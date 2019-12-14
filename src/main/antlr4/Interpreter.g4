@@ -23,6 +23,10 @@ grammar Interpreter;
      }
 }
 
+line
+    :EOF
+    |instruction EOF;
+
 instruction
     : (MOV {isSpace()}? expression COMA register)             #mov
     | (XOR {isSpace()}? expression COMA register)                #xor
@@ -47,9 +51,14 @@ number
     ;
 
 register
-    : EBX
+    : EAX
+    | EBX
     | ECX
     | EDX
+    ;
+
+fragment A
+    : ('a' | 'A')
     ;
 
 fragment B
@@ -129,6 +138,10 @@ EBX
     :PROCSIGN E B X
     ;
 
+EAX
+    :PROCSIGN E A X
+    ;
+
 //int function
 PRINT_STACK
     : '0x80'
@@ -157,7 +170,7 @@ NUMBER
     : [0-9] +
     ;
 EOL
-    : [\r\n] +
+    : [\r\n]
     ;
 WS
     : [\t] -> channel(2)

@@ -1,9 +1,11 @@
 public class MyInterpreterVisitor extends InterpreterBaseVisitor<Integer> {
     private CPU CPU;
 
+
     public MyInterpreterVisitor(CPU CPU) {
         this.CPU = CPU;
     }
+
 
     public Integer visitMov(InterpreterParser.MovContext ctx) {
         Integer number;

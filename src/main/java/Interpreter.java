@@ -20,7 +20,7 @@ public class Interpreter {
             InterpreterParser parser = new InterpreterParser(tokens);
             parser.removeErrorListeners();
             parser.addErrorListener(myErrorListener);
-            ParseTree tree = parser.instruction();//
+            ParseTree tree = parser.line();
             visitor.visit(tree);
         } catch (ParseCancellationException e) {
             System.out.println(e.getMessage());
